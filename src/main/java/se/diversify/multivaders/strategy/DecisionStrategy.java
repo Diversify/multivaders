@@ -1,9 +1,14 @@
 package se.diversify.multivaders.strategy;
 
+import se.diversify.multivaders.DecisionMaker;
 import se.diversify.multivaders.event.KeyEvent;
 
 public interface DecisionStrategy {
 
-    KeyEvent process(KeyEvent event);
+    void process(KeyEvent event);
+
+    void tick();
+
+    void setDecisionMaker(DecisionMaker decisionMaker);
 
 }
