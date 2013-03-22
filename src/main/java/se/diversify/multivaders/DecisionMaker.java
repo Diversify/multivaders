@@ -1,5 +1,8 @@
 package se.diversify.multivaders;
 
+import se.diversify.multivaders.event.KeyEvent;
+import se.diversify.multivaders.strategy.DecisionStrategy;
+
 public class DecisionMaker {
 
     private DecisionStrategy strategy;

@@ -1,5 +1,7 @@
-package se.diversify.multivaders;
+package se.diversify.multivaders.strategy;
 
+
+import se.diversify.multivaders.event.KeyEvent;
 
 public class TrivialDecisionStrategy implements DecisionStrategy {
 

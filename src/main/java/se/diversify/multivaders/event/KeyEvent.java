@@ -1,4 +1,4 @@
-package se.diversify.multivaders;
+package se.diversify.multivaders.event;
 
 
 public class KeyEvent {

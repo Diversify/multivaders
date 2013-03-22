@@ -1,8 +1,9 @@
-package se.diversify.multivaders;
+package se.diversify.multivaders.strategy;
 
-import static se.diversify.multivaders.KeyEvent.*;
-import static se.diversify.multivaders.KeyEvent.ClickType.*;
-import static se.diversify.multivaders.KeyEvent.Function.*;
+import se.diversify.multivaders.event.KeyEvent;
+
+import static se.diversify.multivaders.event.KeyEvent.*;
+import static se.diversify.multivaders.event.KeyEvent.ClickType.*;
 
 public class SumDecisionStrategy implements DecisionStrategy {
 
