@@ -69,6 +69,6 @@ public final class Server implements DecisionMaker.EventCallback {
 
     @Override
     public void sendEvent(KeyEvent event) {
-        webSocketServer.broadcastMessage(event.toJs());
+        webSocketServer.sendToScreen(event.toJs());
     }
 }

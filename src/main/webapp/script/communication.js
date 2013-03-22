@@ -1,25 +1,39 @@
-var socket = new WebSocket("ws://localhost:8090/");
+var comlink = (function(){
+    var socket,
+        url = window.location.origin.match(/[^http://].+[^\d]/);
 
-socket.onopen = function () {
-    console.log("Socket has been opened, spawning evil...");
+    function init( callback , messageHandler){
+        socket = new WebSocket("ws://" + url + "8090/");
+        socket.onopen = function () {
+            console.log("Socket has been opened, spawning evil...");
+            socket.onmessage = messageHandler;
+//                function (msg) {
+//                    console.log('Got message:')
+//                    console.log(msg);
+//                }
+            callback();
+        }
+    }
 
-    socket.onmessage = function (msg) {
-        console.log('Got message:')
-        console.log(msg);
+    function send(text) {
+        try {
+            socket.send(text);
+            console.log('Sent: ' + text);
+        } catch (exception) {
+            console.log('Error: ' + exception);
+        }
     }
 
 
-}
-
-function send(text) {
-    try {
-        socket.send(text);
-        console.log('Sent: ' + text);
-    } catch (exception) {
-        console.log('Error: ' + exception);
+    return {
+        init: init,
+        send: send
     }
-}
+})();
 
-$('#send-button').on('click', function(e){
-    send($('#text').val());
+comlink.init(function(){
+//    $('#send-button').on('click', function(e){
+//        comlink.send($('#text').val());
+//    });
 });
+
