@@ -11,7 +11,7 @@ public class BasedOnPreviousStrategy extends AbstractStrategy {
 
     @Override
     public void process(KeyEvent newEvent) {
-        KeyEvent toReturn = NothingKeyEvent;
+        KeyEvent toReturn = null;
         if (oldEvent.getClickType() == down) {
             if (oldEvent.getFunction() == newEvent.getFunction() && newEvent.getClickType() == up) {
                 toReturn = newEvent;
@@ -21,6 +21,7 @@ public class BasedOnPreviousStrategy extends AbstractStrategy {
                 toReturn = newEvent;
             }
         }
+        oldEvent = newEvent;
         decisionMaker.sendResponse(toReturn);
     }
 }

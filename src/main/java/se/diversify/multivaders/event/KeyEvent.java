@@ -2,23 +2,66 @@ package se.diversify.multivaders.event;
 
 
 public class KeyEvent {
-
     static public enum Function {
-        left,
-        right,
-        shoot,
-        nothing
+        left('l'),
+        right('r'),
+        shoot('s');
+
+        Function(char c) {
+            protocolValue = c;
+        }
+
+        private final char protocolValue;
+
+        public static Function fromProtocol(char c) {
+            for (Function function : Function.values()) {
+                if (function.protocolValue == c) {
+                    return function;
+                }
+            }
+
+            throw new IllegalArgumentException();
+        }
     }
 
     static public enum ClickType {
-        up, down
+        up('u'),
+        down('d');
+
+        ClickType(char c) {
+            protocolValue = c;
+        }
+
+        private final char protocolValue;
+
+        public static ClickType fromProtocol(char c) {
+            for (ClickType clickType : ClickType.values()) {
+                if (clickType.protocolValue == c) {
+                    return clickType;
+                }
+            }
+
+            throw new IllegalArgumentException();
+        }
     }
 
-    static public KeyEvent NothingKeyEvent = new KeyEvent(Function.nothing, ClickType.up);
+    public KeyEvent(String message) {
+        if (message.length() != 2) {
+            throw new IllegalArgumentException();
+        }
+
+        this.function = Function.fromProtocol(message.charAt(0));
+        this.clickType = ClickType.fromProtocol(message.charAt(1));
+    }
 
     public KeyEvent(Function function, ClickType clickType) {
         this.function = function;
         this.clickType = clickType;
+    }
+
+
+    public String toJs() {
+        return "" + function.protocolValue + clickType.protocolValue;
     }
 
     private Function function;

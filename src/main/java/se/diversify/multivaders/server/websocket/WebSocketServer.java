@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.jboss.netty.bootstrap.ServerBootstrap;
+import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelPipeline;
 import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
@@ -37,6 +38,11 @@ public final class WebSocketServer {
     /** All channels. */
     private ChannelGroup channelGroup;
 
+    /** Our Screen*/
+    private Channel screen;
+
+
+
     /** For starting and stopping the server etc. */
     private ServerBootstrap bootstrap;
 
@@ -65,6 +71,29 @@ public final class WebSocketServer {
         }
 
         return false;
+    }
+
+    /**
+     * Send a message to the screen
+     * @param message The message to send
+     * @return {@code true} if the message was sent (i.e. the server is running), or {@code false} if not running.
+     */
+    public boolean sendToScreen(String message) {
+        if(running.get() && screen != null){
+            screen.write(new TextWebSocketFrame(message));
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Sets the screen.
+     * @param screen The screen to write to
+     */
+    public void setScreen(Channel screen) {
+        if(screen != null){
+            this.screen = screen;
+        }
     }
 
     /**
@@ -109,6 +138,7 @@ public final class WebSocketServer {
 
             channelGroup = null;
             bootstrap = null;
+            screen = null;
 
             logger.info("The server has been shut down...");
             return true;

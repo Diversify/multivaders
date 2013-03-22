@@ -40,6 +40,8 @@ public final class WebSocketServerHandler extends SimpleChannelUpstreamHandler {
     /** Channels handling. */
     private final ChannelGroup channelGroup;
 
+    private Channel screen;
+
     /** WebSocket handshaker. */
     private WebSocketServerHandshaker handshaker;
 
@@ -152,6 +154,10 @@ public final class WebSocketServerHandler extends SimpleChannelUpstreamHandler {
 
         String request = ((TextWebSocketFrame) frame).getText();
         logger.debug("Channel {} received {}", ctx.getChannel(), request);
+
+        if("screen".equalsIgnoreCase(request)){
+            server.setScreen(ctx.getChannel());
+        }
         listener.onMessage(request, ctx.getChannel(), server);
     }
 
