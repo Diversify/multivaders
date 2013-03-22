@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.jboss.netty.bootstrap.ServerBootstrap;
 import org.jboss.netty.channel.ChannelPipeline;
+import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.group.ChannelGroup;
 import org.jboss.netty.channel.group.DefaultChannelGroup;
@@ -106,14 +107,18 @@ public final class HttpStaticFileServer {
      * Sets the pipeline factory on {@link #bootstrap}.
      */
     private void setPipelineFactory() {
-        ChannelPipeline pipeline = Channels.pipeline();
-        pipeline.addLast("decoder", new HttpRequestDecoder());
-        pipeline.addLast("aggregator", new HttpChunkAggregator(65536));
-        pipeline.addLast("encoder", new HttpResponseEncoder());
-        pipeline.addLast("chunkedWriter", new ChunkedWriteHandler());
-        pipeline.addLast("handler", new HttpStaticFileServerHandler(rootDir, channelGroup));
-
-        bootstrap.setPipelineFactory(Channels.pipelineFactory(pipeline));
+        bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
+            @Override
+            public ChannelPipeline getPipeline() throws Exception {
+                ChannelPipeline pipeline = Channels.pipeline();
+                pipeline.addLast("decoder", new HttpRequestDecoder());
+                pipeline.addLast("aggregator", new HttpChunkAggregator(65536));
+                pipeline.addLast("encoder", new HttpResponseEncoder());
+                pipeline.addLast("chunkedWriter", new ChunkedWriteHandler());
+                pipeline.addLast("handler", new HttpStaticFileServerHandler(rootDir, channelGroup));
+                return pipeline;
+            }
+        });
     }
 
 }

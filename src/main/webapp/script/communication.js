@@ -1,4 +1,4 @@
-var socket = new WebSocket("ws://localhost:9000/");
+var socket = new WebSocket("ws://localhost:8090/");
 
 socket.onopen = function () {
     console.log("Socket has been opened, spawning evil...");
