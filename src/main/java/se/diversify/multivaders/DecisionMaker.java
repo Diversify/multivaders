@@ -4,9 +4,9 @@ import se.diversify.multivaders.event.KeyEvent;
 import se.diversify.multivaders.strategy.Constants;
 import se.diversify.multivaders.strategy.DecisionStrategy;
 
+import java.util.Timer;
+
 public class DecisionMaker implements Runnable {
-
-
 
     private DecisionStrategy strategy;
     private final EventCallback callback;
@@ -17,10 +17,14 @@ public class DecisionMaker implements Runnable {
         this.callback = callback;
 
         strategy.setDecisionMaker(this);
+
+        new Thread(this).start();
     }
 
     public void process(KeyEvent event) {
-        strategy.process(event);
+        synchronized (strategy) {
+            strategy.process(event);
+        }
     }
 
     public void sendResponse(KeyEvent keyEvent) {
@@ -38,7 +42,9 @@ public class DecisionMaker implements Runnable {
         while(running) {
             try {
                 Thread.sleep(Constants.TIME_SLICE);
-                strategy.tick();
+                synchronized (strategy) {
+                    strategy.tick();
+                }
             } catch (InterruptedException e) {
             }
         }
