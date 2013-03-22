@@ -28,7 +28,7 @@ public final class Server {
         final WebSocketListener listener = new WebSocketListener() {
             @Override
             public void onMessage(String message, Channel channel, WebSocketServer server) {
-                server.broadcastMessage("I got: " + message);
+                server.broadcastMessage(message);
             }
         };
 
