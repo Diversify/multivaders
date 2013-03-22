@@ -80,6 +80,7 @@ public final class WebSocketServer {
      */
     public boolean sendToScreen(String message) {
         if(running.get() && screen != null){
+            logger.debug("Message to screen: " + message);
             screen.write(new TextWebSocketFrame(message));
             return true;
         }
