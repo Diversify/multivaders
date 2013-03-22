@@ -5,7 +5,7 @@ import se.diversify.multivaders.event.KeyEvent;
 import static se.diversify.multivaders.event.KeyEvent.*;
 import static se.diversify.multivaders.event.KeyEvent.ClickType.*;
 
-public class BasedOnPrevoiusStrategy implements DecisionStrategy {
+public class BasedOnPreviousStrategy implements DecisionStrategy {
 
     private KeyEvent oldEvent;
 
