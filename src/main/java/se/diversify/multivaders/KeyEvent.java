@@ -14,6 +14,8 @@ public class KeyEvent {
         up, down
     }
 
+    static public KeyEvent NothingKeyEvent = new KeyEvent(Function.nothing, ClickType.up);
+
     public KeyEvent(Function function, ClickType clickType) {
         this.function = function;
         this.clickType = clickType;
