@@ -30,3 +30,9 @@ canvas {
 .clear {
 	clear: both;
 }
+
+.qr-code {
+    color: #FFF;
+    border: 10px solid #FFF;
+    background-color: #FFF;
+}
