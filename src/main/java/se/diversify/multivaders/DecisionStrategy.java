@@ -1,4 +1,4 @@
-package se.diversify.multivaders.multivaders;
+package se.diversify.multivaders;
 
 public interface DecisionStrategy {
 
