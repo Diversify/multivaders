@@ -157,8 +157,9 @@ public final class WebSocketServerHandler extends SimpleChannelUpstreamHandler {
 
         if("screen".equalsIgnoreCase(request)){
             server.setScreen(ctx.getChannel());
+        } else {
+            listener.onMessage(request, ctx.getChannel(), server);
         }
-        listener.onMessage(request, ctx.getChannel(), server);
     }
 
     /**

@@ -45,8 +45,10 @@ public final class Server implements DecisionMaker.EventCallback {
         final WebSocketListener listener = new WebSocketListener() {
             @Override
             public void onMessage(String message, Channel channel, WebSocketServer server) {
-                KeyEvent event = new KeyEvent(message);
-                decisionMaker.process(event);
+                if(message != null){
+                    KeyEvent event = new KeyEvent(message);
+                    decisionMaker.process(event);
+                }
             }
         };
 
