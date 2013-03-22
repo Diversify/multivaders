@@ -20,7 +20,9 @@ import se.diversify.multivaders.server.websocket.WebSocketServer;
 public final class Server {
 
     public static void main(String[] args) {
-        File rootDir = new File("./src/main/webapp");
+        ServerRecource recource = new ServerRecource(args.length > 0 ? args[0] : null);
+
+        File rootDir = new File(recource.getRoot());
         HttpStaticFileServer httpStaticFileServer = new HttpStaticFileServer(rootDir);
 
         final WebSocketListener listener = new WebSocketListener() {
@@ -32,8 +34,8 @@ public final class Server {
 
         WebSocketServer webSocketServer = new WebSocketServer(listener);
         try {
-            httpStaticFileServer.start(new InetSocketAddress(8080));
-            webSocketServer.start(new InetSocketAddress(8090));
+            httpStaticFileServer.start(new InetSocketAddress(recource.getStaticPort()));
+            webSocketServer.start(new InetSocketAddress(recource.getSocketPort()));
 
             System.out.println("Press enter to shut the server down...");
             System.in.read();

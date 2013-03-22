@@ -5,12 +5,12 @@ import se.diversify.multivaders.event.KeyEvent;
 import static se.diversify.multivaders.event.KeyEvent.*;
 import static se.diversify.multivaders.event.KeyEvent.ClickType.*;
 
-public class BasedOnPreviousStrategy implements DecisionStrategy {
+public class BasedOnPreviousStrategy extends AbstractStrategy {
 
     private KeyEvent oldEvent;
 
     @Override
-    public KeyEvent process(KeyEvent newEvent) {
+    public void process(KeyEvent newEvent) {
         KeyEvent toReturn = NothingKeyEvent;
         if (oldEvent.getClickType() == down) {
             if (oldEvent.getFunction() == newEvent.getFunction() && newEvent.getClickType() == up) {
@@ -21,6 +21,6 @@ public class BasedOnPreviousStrategy implements DecisionStrategy {
                 toReturn = newEvent;
             }
         }
-        return toReturn;
+        decisionMaker.sendResponse(toReturn);
     }
 }

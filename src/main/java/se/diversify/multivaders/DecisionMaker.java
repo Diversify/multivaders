@@ -3,7 +3,7 @@ package se.diversify.multivaders;
 import se.diversify.multivaders.event.KeyEvent;
 import se.diversify.multivaders.strategy.DecisionStrategy;
 
-public class DecisionMaker {
+public class DecisionMaker implements Runnable {
 
     private DecisionStrategy strategy;
 
@@ -11,7 +11,16 @@ public class DecisionMaker {
         this.strategy = strategy;
     }
 
-    public KeyEvent process(KeyEvent event) {
-        return strategy.process(event);
+    public void process(KeyEvent event) {
+        strategy.process(event);
+    }
+
+    public void sendResponse(KeyEvent keyEvent) {
+
+    }
+
+    @Override
+    public void run() {
+
     }
 }
