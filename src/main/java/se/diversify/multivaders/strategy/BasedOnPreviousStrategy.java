@@ -21,6 +21,7 @@ public class BasedOnPreviousStrategy extends AbstractStrategy {
                 toReturn = newEvent;
             }
         }
+        oldEvent = newEvent;
         decisionMaker.sendResponse(toReturn);
     }
 }
