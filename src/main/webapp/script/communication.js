@@ -1,25 +1,36 @@
-var socket = new WebSocket("ws://localhost:9000/");
+var communication = (function(){
 
-socket.onopen = function () {
-    console.log("Socket has been opened, spawning evil...");
+    function init( callback ){
+        var socket = new WebSocket("ws://localhost:9000/");
+        socket.onopen = function () {
+            console.log("Socket has been opened, spawning evil...");
+            socket.onmessage = function (msg) {
+                console.log('Got message:')
+                console.log(msg);
+            }
+            callback();
+        }
+    }
 
-    socket.onmessage = function (msg) {
-        console.log('Got message:')
-        console.log(msg);
+    function send(text) {
+        try {
+            socket.send(text);
+            console.log('Sent: ' + text);
+        } catch (exception) {
+            console.log('Error: ' + exception);
+        }
     }
 
 
-}
-
-function send(text) {
-    try {
-        socket.send(text);
-        console.log('Sent: ' + text);
-    } catch (exception) {
-        console.log('Error: ' + exception);
+    return {
+        init: init,
+        send: send
     }
-}
+})();
 
-$('#send-button').on('click', function(e){
-    send($('#text').val());
+communication.init(function(){
+    $('#send-button').on('click', function(e){
+        communication.send($('#text').val());
+    });
 });
+
