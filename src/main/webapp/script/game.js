@@ -90,6 +90,29 @@ var detectColisions = function() {
 	}
 }
 
+//Set up communication channel
+comlink.init(function(){
+        console.log('Connection established');
+    },
+    function(msg){
+        console.log('Got server message:');
+        console.log(msg);
+
+
+        switch (msg.data) {
+            case 'lp':
+                player.moveLeft();
+                break;
+            case 'rp':
+                player.moveRight();
+                break;
+            case 'sp':
+                lasers[lasers.length] = new Laser(player);
+                break;
+        }
+    }
+);
+
 /**
  * Run the game
  */
