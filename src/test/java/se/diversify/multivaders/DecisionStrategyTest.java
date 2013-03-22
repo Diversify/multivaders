@@ -1,6 +1,8 @@
 package se.diversify.multivaders;
 
 import org.junit.Test;
+import se.diversify.multivaders.event.KeyEvent;
+import se.diversify.multivaders.strategy.DecisionStrategy;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;

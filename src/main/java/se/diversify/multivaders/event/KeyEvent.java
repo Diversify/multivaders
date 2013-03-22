@@ -1,4 +1,4 @@
-package se.diversify.multivaders;
+package se.diversify.multivaders.event;
 
 
 public class KeyEvent {
@@ -13,6 +13,8 @@ public class KeyEvent {
     static public enum ClickType {
         up, down
     }
+
+    static public KeyEvent NothingKeyEvent = new KeyEvent(Function.nothing, ClickType.up);
 
     public KeyEvent(Function function, ClickType clickType) {
         this.function = function;
