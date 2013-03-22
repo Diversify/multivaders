@@ -40,7 +40,7 @@ public class DecisionStrategyTest {
         }
     }
 
-    public void assertStrategy(String[] happenings, DecisionStrategy strategy, String[] expected) {
+    public static void assertStrategy(String[] happenings, DecisionStrategy strategy, String[] expected) {
         // Fixture
         final List<KeyEvent> events = generateEvents(happenings);
         final List<KeyEvent> expectedEvents = generateEvents(expected);
@@ -55,7 +55,7 @@ public class DecisionStrategyTest {
         assertEquals(expectedEvents, actual);
     }
 
-    public List<KeyEvent> generateEvents(String[] happenings) {
+    private static List<KeyEvent> generateEvents(String[] happenings) {
         List<KeyEvent> result = new ArrayList<KeyEvent>();
 
         for (String happening : happenings) {
@@ -67,7 +67,7 @@ public class DecisionStrategyTest {
         return result;
     }
 
-    private KeyEvent.ClickType clickType(char c) {
+    private static KeyEvent.ClickType clickType(char c) {
         switch (c) {
             case 'd':
                 return KeyEvent.ClickType.down;
@@ -78,7 +78,7 @@ public class DecisionStrategyTest {
         }
     }
 
-    private KeyEvent.Function function(char c) {
+    private static KeyEvent.Function function(char c) {
         switch (c) {
             case 'l':
                 return KeyEvent.Function.left;
