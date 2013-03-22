@@ -92,9 +92,7 @@ public final class WebSocketServer {
      * @param screen The screen to write to
      */
     public void setScreen(Channel screen) {
-        if(screen != null){
-            this.screen = screen;
-        }
+        this.screen = screen;
     }
 
     /**
