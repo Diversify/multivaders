@@ -30,4 +30,23 @@ public class KeyEvent {
         return clickType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        KeyEvent keyEvent = (KeyEvent) o;
+
+        if (clickType != keyEvent.clickType) return false;
+        if (function != keyEvent.function) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = function != null ? function.hashCode() : 0;
+        result = 31 * result + (clickType != null ? clickType.hashCode() : 0);
+        return result;
+    }
 }
