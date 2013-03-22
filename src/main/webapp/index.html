@@ -9,12 +9,15 @@
         }
 
         .button {
-            font-size: 5em;
+            font-size: 6em;
             color: white;
             padding: 0.5em 0.75em;
-            margin: 0.1em;
+            margin: 1.5em 0.1em;
             font-weight: bold;
             font-family: sans-serif;
+            border-radius: 0.4em;
+            -webkit-border-radius: 0.4em;
+            -moz-border-radius: 0.4em;
         }
 
         .left{
@@ -30,11 +33,12 @@
 </head>
 <body>
 <div class="remote">
-    <p class="button left">&lt;</p>
-    <p class="button left">&gt;</p>
-    <p class="button right">X</p>
+    <button class="button left" id="left">&lt;</button>
+    <button class="button left" id="right">&gt;</button>
+    <button class="button right" id="shoot">X</button>
 </div>
 <script src="script/vendor/jquery.min.js"></script>
 <script src="script/communication.js"></script>
+<script src="script/remote.js"></script>
 </body>
 </html>
