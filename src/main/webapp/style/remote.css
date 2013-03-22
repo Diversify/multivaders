@@ -1,0 +1,18 @@
+body {
+    background-color: #234;
+}
+
+.button {
+    font-size: 5em;
+    color: white;
+}
+
+.left{
+    float: left;
+    background-color: #111;
+}
+
+.right {
+    float: right;
+    background-color: red;
+}

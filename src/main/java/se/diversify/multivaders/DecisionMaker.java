@@ -9,10 +9,14 @@ public class DecisionMaker implements Runnable {
 
 
     private DecisionStrategy strategy;
+    private final EventCallback callback;
     private boolean running;
 
-    public DecisionMaker(DecisionStrategy strategy) {
+    public DecisionMaker(DecisionStrategy strategy, EventCallback callback) {
         this.strategy = strategy;
+        this.callback = callback;
+
+        strategy.setDecisionMaker(this);
     }
 
     public void process(KeyEvent event) {
@@ -20,7 +24,9 @@ public class DecisionMaker implements Runnable {
     }
 
     public void sendResponse(KeyEvent keyEvent) {
-
+        if (callback != null) {
+            callback.sendEvent(keyEvent);
+        }
     }
 
     public void setRunning(boolean running) {
@@ -34,8 +40,11 @@ public class DecisionMaker implements Runnable {
                 Thread.sleep(Constants.TIME_SLICE);
                 strategy.tick();
             } catch (InterruptedException e) {
-
             }
         }
+    }
+
+    public interface EventCallback {
+        void sendEvent(KeyEvent event);
     }
 }

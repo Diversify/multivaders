@@ -1,30 +1,40 @@
-<!--
-File index.html
-implemented by Adelino Lobão
-09/01/2012
--->
+<!DOCTYPE html>
 <html>
-	<head>
-		<title>Space Invaders</title>
-		<link rel="stylesheet" href="style/style_space.css" />
-		<link rel="stylesheet" href="style/normalize.css"/>
-	</head>
-	<body>
-		<header>
-			<img src="style/images/logo.gif" />
-		</header>
-		<section id="controls">Z (Left) - X (Right) - SPACE (Shoot)</section>
-		<canvas id="content"></canvas>
-		<section id="info">
-			<a href="https://github.com/adelinolobao/Space-Invaders-HTML-5" target="_blank"><strong>Follow project on github</strong></a>
-		</section>
-		<script src="script/keyhandler.js"></script>
-		<script src="script/colisionhandler.js"></script>
-		<script src="script/enemy.js"></script>
-		<script src="script/sprite.js"></script>
-		<script src="script/laser.js"></script>
-		<script src="script/player.js"></script>
-        <script src="script/communication.js"></script>
-		<script src="script/game.js"></script>
-	</body>
+<head>
+    <title>Multivaders remote</title>
+    <link rel="stylesheet" href="/style/remote.css"/>
+    <style type="text/css">
+        body {
+            background-color: #234;
+        }
+
+        .button {
+            font-size: 5em;
+            color: white;
+            padding: 0.5em 0.75em;
+            margin: 0.1em;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .left{
+            float: left;
+            background-color: #111;
+        }
+
+        .right {
+            float: right;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="remote">
+    <p class="button left">&lt;</p>
+    <p class="button left">&gt;</p>
+    <p class="button right">X</p>
+</div>
+<script src="script/vendor/jquery.min.js"></script>
+<script src="script/communication.js"></script>
+</body>
 </html>

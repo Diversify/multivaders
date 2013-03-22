@@ -93,6 +93,8 @@ var detectColisions = function() {
 //Set up communication channel
 comlink.init(function(){
         console.log('Connection established');
+        comlink.send('screen');
+        console.log('Registered game screen');
     },
     function(msg){
         console.log('Got server message:');
@@ -107,6 +109,15 @@ comlink.init(function(){
                 player.moveRight();
                 break;
             case 'sp':
+                lasers[lasers.length] = new Laser(player);
+                break;
+            case 'ld':
+                player.moveLeft();
+                break;
+            case 'rd':
+                player.moveRight();
+                break;
+            case 'sd':
                 lasers[lasers.length] = new Laser(player);
                 break;
         }

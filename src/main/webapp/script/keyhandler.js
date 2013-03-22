@@ -19,6 +19,14 @@ function KeyHandler() {
     this.RIGHT_PRESS_CODE = 'rp';
     this.SHOOT_PRESS_CODE = 'sp';
 
+    this.LEFT_DOWN_CODE = 'ld';
+    this.RIGHT_DOWN_CODE = 'rd';
+    this.SHOOT_DOWN_CODE = 'sd';
+
+    this.LEFT_UP_CODE = 'lu';
+    this.RIGHT_UP_CODE = 'ru';
+    this.SHOOT_UP_CODE = 'su';
+
 
     /**
      * Handle the events when a key is pressed
@@ -33,15 +41,21 @@ function KeyHandler() {
 
         switch (charCode) {
             case this.Z_KEY:
-                comlink.send(this.LEFT_PRESS_CODE)
+//                comlink.send(this.LEFT_PRESS_CODE);
+                comlink.send(this.LEFT_DOWN_CODE);
+                comlink.send(this.LEFT_UP_CODE);
 //                player.moveLeft();
                 break;
             case this.X_KEY:
-                comlink.send(this.RIGHT_PRESS_CODE)
+//                comlink.send(this.RIGHT_PRESS_CODE);
+                comlink.send(this.RIGHT_DOWN_CODE);
+                comlink.send(this.RIGHT_UP_CODE);
 //                player.moveRight();
                 break;
             case this.SPACE_KEY:
-                comlink.send(this.SHOOT_PRESS_CODE);
+//                comlink.send(this.SHOOT_PRESS_CODE);
+                comlink.send(this.SHOOT_DOWN_CODE);
+                comlink.send(this.SHOOT_UP_CODE);
 //                lasers[lasers.length] = new Laser(player);
                 break;
         }

@@ -197,6 +197,10 @@ public final class HttpStaticFileServerHandler extends SimpleChannelUpstreamHand
      * @return A sanitized URI as a file relative to our root dir or {@code null} if it was bogus.
      */
     private File sanitizeUri(String uri) {
+        if("/".equalsIgnoreCase(uri)) {
+            uri = "/index.html";
+        }
+
         // Decode the path.
         try {
             uri = URLDecoder.decode(uri, "UTF-8");
